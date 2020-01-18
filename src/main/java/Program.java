@@ -10,12 +10,12 @@ public class Program {
         System.out.println(bear.getWeight());
 
         BlackBear blb = new BlackBear();
-        System.out.println(blb.display() + " " + blb.getWeight());
+        System.out.println(blb.display() + " " + blb.getWeight() + " " + blb.attack());
 
         BrownBear brb = new BrownBear();
-        System.out.println(brb.display() + " " + blb.getWeight());
+        System.out.println(brb.display() + " " + brb.getWeight()+ " " + brb.attack());
 
         PolarBear plb = new PolarBear();
-        System.out.println(plb.display() + " " + blb.getWeight());
+        System.out.println(plb.display() + " " + plb.getWeight()+ " " + plb.attack());
     }
 }

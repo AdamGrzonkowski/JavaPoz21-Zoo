@@ -7,4 +7,9 @@ public class PolarBear extends Bear {
         String msg = "I am Polar Bear!";
         return msg;
     }
+
+    @Override
+    public String attack(){
+        return "Bij zabij!";
+    }
 }

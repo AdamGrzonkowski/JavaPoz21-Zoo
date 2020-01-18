@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.time.LocalDateTime;
 
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -16,6 +18,10 @@ public class Bear extends Animal {
 
     public LocalDateTime getLastEatTime(){
         return lastEatTime;
+    }
+
+    public String attack(){
+        throw new NotImplementedException();
     }
 
     @Override

@@ -15,4 +15,12 @@ public class BlackBearTest {
         String displayMsg = bear.display();
         Assert.assertTrue(displayMsg.contains("Black"));
     }
+
+    @Test
+    public void Attack_Always_ReturnsStringContainingRane(){
+        BlackBear bear = new BlackBear();
+
+        String attackMsg = bear.attack();
+        Assert.assertTrue(attackMsg.contains("ranę"));
+    }
 }

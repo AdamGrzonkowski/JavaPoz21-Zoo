@@ -7,4 +7,9 @@ public class BlackBear extends Bear { // BlackBear -> Bear -> Animal
         String msg = "I am Black Bear!";
         return msg;
     }
+
+    @Override
+    public String attack(){
+        return "Zadaj ranę!";
+    }
 }

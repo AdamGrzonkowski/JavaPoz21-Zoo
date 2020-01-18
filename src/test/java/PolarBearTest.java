@@ -15,4 +15,12 @@ public class PolarBearTest {
         String displayMsg = bear.display();
         Assert.assertTrue(displayMsg.contains("Polar"));
     }
+
+    @Test
+    public void Attack_Always_ReturnsStringContainingRane(){
+        PolarBear bear = new PolarBear();
+
+        String attackMsg = bear.attack();
+        Assert.assertTrue(attackMsg.contains("zabij"));
+    }
 }

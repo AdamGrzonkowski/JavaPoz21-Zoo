@@ -8,7 +8,6 @@ public class PolarBear extends Bear {
         return msg;
     }
 
-    @Override
     public String attack(){
         return "Bij zabij!";
     }

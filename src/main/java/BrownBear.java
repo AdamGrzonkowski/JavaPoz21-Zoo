@@ -8,7 +8,6 @@ public class BrownBear extends Bear {
         return msg;
     }
 
-    @Override
     public String attack(){
         return "Zadaj ranę!";
     }

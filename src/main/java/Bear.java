@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-public class Bear extends Animal {
+public abstract class Bear extends Animal {
     private LocalDateTime lastEatTime;
 
     public Bear(){}
 
-    public Bear(LocalDateTime eatTime){
+    protected Bear(LocalDateTime eatTime){
         if (eatTime == null){
             throw new IllegalArgumentException("Eattime has illegal value: null");
         }
@@ -20,9 +20,7 @@ public class Bear extends Animal {
         return lastEatTime;
     }
 
-    public String attack(){
-        throw new NotImplementedException();
-    }
+    public abstract String display();
 
     @Override
     public void eat(){

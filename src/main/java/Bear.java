@@ -9,7 +9,7 @@ public class Bear extends Animal {
 
     public Bear(LocalDateTime eatTime){
         if (eatTime == null){
-            throw new IllegalArgumentException("Eattime has illegael value: null");
+            throw new IllegalArgumentException("Eattime has illegal value: null");
         }
         lastEatTime = eatTime;
     }
@@ -27,14 +27,14 @@ public class Bear extends Animal {
     public boolean isAlive(){
 
         /*
-        // This is how you'd need to approach it, if you'd use Date type instead of LocalDateTime
+        // This is how you'd need to approach it, if you used Date type instead of LocalDateTime
                 return lastEatTime == null
                 ? false
                 : TimeUnit.DAYS.convert(new Date().getTime() - lastEatTime.getTime()), TimeUnit.MILLISECONDS) < 10;
         */
 
         /*
-        // This code is below as below, but written in simpler way
+        // This code is the same one as below, but written in simpler way
         if (lastEatTime == null){
             return false;
         }

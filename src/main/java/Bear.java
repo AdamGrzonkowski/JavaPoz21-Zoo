@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public abstract class Bear extends Animal {
-    private LocalDateTime lastEatTime;
+    protected LocalDateTime lastEatTime;
 
     public Bear(){}
 
@@ -21,6 +21,8 @@ public abstract class Bear extends Animal {
     }
 
     public abstract String display();
+
+    public abstract String attack();
 
     @Override
     public void eat(){

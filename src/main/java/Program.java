@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Program {
     public static void main(String args[]){
@@ -10,12 +11,19 @@ public class Program {
         System.out.println(bear.getWeight());
 
         Bear blb = new BlackBear();
-        System.out.println(blb.display() + " " + blb.getWeight() + " " + blb.attack());
-
         Bear brb = new BrownBear();
-        System.out.println(brb.display() + " " + brb.getWeight()+ " " + brb.attack());
+        Bear plb = new PolarBear(LocalDateTime.now());
+        Bear tb = new TeddyBear();
 
-        Bear plb = new PolarBear();
-        System.out.println(plb.display() + " " + plb.getWeight()+ " " + plb.attack());
+        ArrayList<Bear> animalList = new ArrayList<>();
+        animalList.add(blb);
+        animalList.add(brb);
+        animalList.add(plb);
+        animalList.add(tb);
+
+        for (int i=0; i < animalList.size(); i++){
+            Bear currentBear = animalList.get(i);
+            System.out.println(currentBear.display() + " " + currentBear.getWeight()+ " " + currentBear.attack() + " " + currentBear.isAlive());
+        }
     }
 }

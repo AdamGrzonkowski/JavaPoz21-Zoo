@@ -1,6 +1,12 @@
+import java.time.LocalDateTime;
+
 public class BlackBear extends Bear { // BlackBear -> Bear -> Animal
     public BlackBear(){
         weight = 50;
+    }
+
+    public BlackBear(LocalDateTime eatTime){
+        super(eatTime);
     }
 
     public String display(){
@@ -8,6 +14,7 @@ public class BlackBear extends Bear { // BlackBear -> Bear -> Animal
         return msg;
     }
 
+    @Override
     public String attack(){
         return "Zadaj ranę!";
     }

@@ -9,7 +9,7 @@ public class BearTest {
     @Test
     public void GetLastEatTime_AfterJustCreatingBearObject_ReturnsNull(){
         // Given / When (Arrange / Act)
-        Bear bear = new Bear();
+        Bear bear = new BlackBear();
 
         // Then (Assert)
         Assert.assertNull(null);
@@ -18,7 +18,7 @@ public class BearTest {
     @Test
     public void GetLastEatTime_AfterEatMethodWasCalled_ReturnsCurrentNewDate(){
         // Given (Arrange)
-        Bear bear = new Bear();
+        Bear bear = new BlackBear();
 
         // When (Act)
         bear.eat();
@@ -32,7 +32,7 @@ public class BearTest {
 
     @Test
     public void IsAlive_IfDaysBetweenNowAndLastEatTimeIsMoreThan10Days_ReturnsFalse(){
-        Bear bear = new Bear(LocalDateTime.now().minusDays(11));
+        Bear bear = new BlackBear(LocalDateTime.now().minusDays(11));
 
         boolean isAlive = bear.isAlive();
 
@@ -41,7 +41,7 @@ public class BearTest {
 
     @Test
     public void IsAlive_IfDaysBetweenNowAndLastEatTimeIsLessThan10Days_ReturnsFalse() {
-        Bear bear = new Bear(LocalDateTime.now().minusDays(5));
+        Bear bear = new BlackBear(LocalDateTime.now().minusDays(5));
 
         boolean isAlive = bear.isAlive();
 
@@ -50,7 +50,7 @@ public class BearTest {
 
     @Test
     public void IsAlive_IfDaysBetweenNowAndLastEatTimeIsExactly10Days_ReturnsFalse() {
-        Bear bear = new Bear(LocalDateTime.now().minusDays(10));
+        Bear bear = new BlackBear(LocalDateTime.now().minusDays(10));
 
         boolean isAlive = bear.isAlive();
 

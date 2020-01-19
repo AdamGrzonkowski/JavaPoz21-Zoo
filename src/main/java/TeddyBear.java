@@ -13,4 +13,9 @@ public class TeddyBear extends Bear {
         String msg = "I am Teddy Bear!";
         return msg;
     }
+
+    @Override
+    public String attack() {
+        throw new RuntimeException("Teddy Bears do not attack!");
+    }
 }

@@ -2,7 +2,6 @@ package Services.Animals;
 
 import Constants.AttackType;
 import Models.Animals.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,17 +9,23 @@ import java.util.List;
 import java.util.Map;
 
 public class AnimalService implements IAnimalService {
-    List<Animal> allAnimals = new ArrayList<>();
+    public List<BlackBear> blackBears = new ArrayList<>();
+    public List<BrownBear> brownBears = new ArrayList<>();
+    public List<PolarBear> polarBears = new ArrayList<>();
 
     @Override
     public int getNumberOfAllAnimals() {
-        return allAnimals.size();
+        return blackBears.size() + brownBears.size() + polarBears.size();
     }
 
     @Override
     public Map<String, Integer> getAnimalsCount() {
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        throw new NotImplementedException();
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Black Bears", blackBears.size());
+        map.put("Brown Bears", brownBears.size());
+        map.put("Polar Bears", polarBears.size());
+
+        return map;
     }
 
     @Override

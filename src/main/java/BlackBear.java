@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 
-public class BlackBear extends Bear { // BlackBear -> Bear -> Animal
+public class BlackBear extends Bear  { // BlackBear -> Bear -> Animal -> RealObject
     public BlackBear(){
         weight = 50;
     }

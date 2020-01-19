@@ -13,13 +13,15 @@ public class Program {
         Bear blb = new BlackBear();
         Bear brb = new BrownBear();
         Bear plb = new PolarBear(LocalDateTime.now());
-        Bear tb = new TeddyBear();
+        //Bear tb = new TeddyBear();
+
+        // Mockito <-------------
 
         ArrayList<Bear> animalList = new ArrayList<>();
         animalList.add(blb);
         animalList.add(brb);
         animalList.add(plb);
-        animalList.add(tb);
+        //animalList.add(tb);
 
         for (int i=0; i < animalList.size(); i++){
             Bear currentBear = animalList.get(i);

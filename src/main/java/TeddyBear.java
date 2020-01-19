@@ -1,21 +1,12 @@
-public class TeddyBear extends Bear {
-    @Override
-    public void eat(){
-        throw new RuntimeException("Teddy bears do not eat!");
-    }
-
-    @Override
-    public boolean isAlive(){
-        return false;
-    }
-
+public class TeddyBear extends ToyBear {
     public String display(){
         String msg = "I am Teddy Bear!";
         return msg;
     }
 
-    @Override
-    public String attack() {
-        throw new RuntimeException("Teddy Bears do not attack!");
+    protected int weight;
+
+    public int getWeight(){
+        return weight;
     }
 }

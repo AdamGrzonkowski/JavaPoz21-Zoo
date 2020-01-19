@@ -1,17 +1,15 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.time.LocalDateTime;
 
-public class Animal {
-    protected int weight;
+public abstract class Animal extends RealObject implements IAnimal{
+    protected LocalDateTime lastEatTime;
+
+    public LocalDateTime getLastEatTime(){
+        return lastEatTime;
+    }
 
     public void eat(){
-        throw new NotImplementedException();
+        this.lastEatTime = LocalDateTime.now();
     }
 
-    public boolean isAlive(){
-        throw new NotImplementedException();
-    }
-
-    public int getWeight(){
-        return weight;
-    }
+    public abstract boolean isAlive();
 }

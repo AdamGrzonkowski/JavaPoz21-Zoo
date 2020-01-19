@@ -1,19 +1,16 @@
-package Animals;
-
-import org.junit.Test;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+package Models.Animals;
 
 public class AnimalTest {
 /*
     @Test(expected = NotImplementedException.class)
     public void eatThrowsNotImplementedException(){
-        Animals.Animal animal = new Animals.Animal();
+        Models.Animals.Animal animal = new Models.Animals.Animal();
         animal.eat();
     }
 
     @Test(expected = NotImplementedException.class)
     public void isAliveThrowsNotImplementedException(){
-        Animals.Animal animal = new Animals.Animal();
+        Models.Animals.Animal animal = new Models.Animals.Animal();
         animal.isAlive();
     }
     */

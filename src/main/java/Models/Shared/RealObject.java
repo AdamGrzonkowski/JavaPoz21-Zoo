@@ -1,4 +1,4 @@
-package Shared;
+package Models.Shared;
 
 public class RealObject {
     protected int weight;

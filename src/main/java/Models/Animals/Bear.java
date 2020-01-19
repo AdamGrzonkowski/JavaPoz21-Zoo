@@ -1,4 +1,4 @@
-package Animals;
+package Models.Animals;
 
 import java.time.LocalDateTime;
 
@@ -14,10 +14,6 @@ public abstract class Bear extends Animal {
         }
         lastEatTime = eatTime;
     }
-
-    public abstract String display();
-
-    public abstract String attack();
 
     @Override
     public boolean isAlive(){

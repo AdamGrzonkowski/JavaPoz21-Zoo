@@ -1,7 +1,7 @@
-import Animals.Bear;
-import Animals.BlackBear;
-import Animals.BrownBear;
-import Animals.PolarBear;
+import Models.Animals.Bear;
+import Models.Animals.BlackBear;
+import Models.Animals.BrownBear;
+import Models.Animals.PolarBear;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ public class Program {
         Bear blb = new BlackBear();
         Bear brb = new BrownBear();
         Bear plb = new PolarBear(LocalDateTime.now());
-        //Animals.Bear tb = new Toys.TeddyBear();
+        //Models.Animals.Bear tb = new Models.Toys.TeddyBear();
 
-        // Mockito <-------------
+        // Mockito <------------- one of the main reasons for using Interfaces and Composition
 
         ArrayList<Bear> animalList = new ArrayList<>();
         animalList.add(blb);
@@ -30,7 +30,7 @@ public class Program {
 
         for (int i=0; i < animalList.size(); i++){
             Bear currentBear = animalList.get(i);
-            System.out.println(currentBear.display() + " " + currentBear.getWeight()+ " " + currentBear.attack() + " " + currentBear.isAlive());
+            System.out.println(currentBear.getInfo() + " " + currentBear.getWeight()+ " " + currentBear.getAttackType() + " " + currentBear.isAlive());
         }
     }
 }

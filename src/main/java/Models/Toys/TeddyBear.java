@@ -1,8 +1,8 @@
-package Toys;
+package Models.Toys;
 
 public class TeddyBear extends ToyBear {
     public String display(){
-        String msg = "I am Teddy Animals.Bear!";
+        String msg = "I am Teddy Models.Animals.Bear!";
         return msg;
     }
 

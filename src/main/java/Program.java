@@ -1,3 +1,8 @@
+import Animals.Bear;
+import Animals.BlackBear;
+import Animals.BrownBear;
+import Animals.PolarBear;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -13,7 +18,7 @@ public class Program {
         Bear blb = new BlackBear();
         Bear brb = new BrownBear();
         Bear plb = new PolarBear(LocalDateTime.now());
-        //Bear tb = new TeddyBear();
+        //Animals.Bear tb = new Toys.TeddyBear();
 
         // Mockito <-------------
 

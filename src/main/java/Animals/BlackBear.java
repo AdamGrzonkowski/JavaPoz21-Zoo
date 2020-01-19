@@ -1,6 +1,8 @@
+package Animals;
+
 import java.time.LocalDateTime;
 
-public class BlackBear extends Bear  { // BlackBear -> Bear -> Animal -> RealObject
+public class BlackBear extends Bear  { // Animals.BlackBear -> Animals.Bear -> Animals.Animal -> Shared.RealObject
     public BlackBear(){
         weight = 50;
     }
@@ -10,7 +12,7 @@ public class BlackBear extends Bear  { // BlackBear -> Bear -> Animal -> RealObj
     }
 
     public String display(){
-        String msg = "I am Black Bear!";
+        String msg = "I am Black Animals.Bear!";
         return msg;
     }
 

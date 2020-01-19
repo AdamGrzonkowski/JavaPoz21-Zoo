@@ -1,3 +1,5 @@
+package Animals;
+
 import java.time.LocalDateTime;
 
 public class PolarBear extends Bear {
@@ -10,7 +12,7 @@ public class PolarBear extends Bear {
     }
 
     public String display(){
-        String msg = "I am Polar Bear!";
+        String msg = "I am Polar Animals.Bear!";
         return msg;
     }
 

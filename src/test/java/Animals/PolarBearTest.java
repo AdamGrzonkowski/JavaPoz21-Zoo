@@ -1,3 +1,7 @@
+package Animals;
+
+import Animals.Bear;
+import Animals.PolarBear;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,3 +1,5 @@
+package Shared;
+
 public class RealObject {
     protected int weight;
 

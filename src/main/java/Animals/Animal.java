@@ -1,3 +1,7 @@
+package Animals;
+
+import Shared.RealObject;
+
 import java.time.LocalDateTime;
 
 public abstract class Animal extends RealObject implements IAnimal{

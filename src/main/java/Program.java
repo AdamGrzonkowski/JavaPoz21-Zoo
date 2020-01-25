@@ -4,6 +4,8 @@ import Models.Animals.BrownBear;
 import Models.Animals.PolarBear;
 import Services.Animals.AnimalService;
 import Services.Animals.IAnimalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,7 +14,22 @@ import java.util.Scanner;
 
 public class Program {
 
+    private static final Logger logger =
+            LoggerFactory.getLogger(Program.class);
+
     public static void main(String args[]){
+        try{
+            int tryToDivideBy0 = 12/0;
+            MainProgramMethod();
+        }
+        catch(Exception ex){
+            logger.error(ex.getMessage(), ex);
+            MainProgramMethod();
+            // handle exception here - log it into file
+        }
+    }
+
+    public static void MainProgramMethod(){
         System.out.println("Hello!");
 
         Bear bear = new BlackBear.BlackBearBuilder()

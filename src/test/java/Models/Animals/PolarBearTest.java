@@ -7,8 +7,10 @@ import org.junit.Test;
 public class PolarBearTest {
     @Test
     public void GetWeight_Always_Returns50(){
-        Bear bear = new PolarBear();
-        Assert.assertEquals(200, bear.getWeight());
+        Bear bearLombokBuilderIntance = new PolarBear().toBuilder()
+                .name("misio")
+                .build();
+        Assert.assertEquals(200, bearLombokBuilderIntance.getWeight());
     }
 
     @Test

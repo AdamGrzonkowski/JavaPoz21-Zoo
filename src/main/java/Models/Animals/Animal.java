@@ -2,15 +2,20 @@ package Models.Animals;
 
 import Constants.AttackType;
 import Models.Shared.RealObject;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
+@SuperBuilder(toBuilder = true)
+@Getter
 public abstract class Animal extends RealObject implements IAnimal{ // We do not have to inherit from IAnimal at this point, it's just for example purposes
     protected LocalDateTime lastEatTime;
     protected AttackType attackType;
     protected String info;
     protected String name;
 
+    protected Animal(){}
 
     public LocalDateTime getLastEatTime(){
         return lastEatTime;

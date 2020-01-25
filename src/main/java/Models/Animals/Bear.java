@@ -1,8 +1,13 @@
 package Models.Animals;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+
 import java.time.LocalDateTime;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+@SuperBuilder(toBuilder = true)
+@Getter
 public abstract class Bear extends Animal {
 
     public Bear(){}

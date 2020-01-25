@@ -1,14 +1,58 @@
 <configuration>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <property name="LOG_FILE_PATTERN" value="logs/zoo-%d{yyyy-MM-dd}.log"/> <!-- logback.xml allows us specifying variables. It's the same as in JAVA: String LOG_FILE_PATTERN = "logs/zoo-%d{yyyy-MM-dd}.log"; -->
+    <property name="ERROR_LOG_FILE_PATTERN" value="logs/zoo-%d{yyyy-MM-dd}-error.log"/>
+
+    <property name="MSG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> <!-- appender used to display logs in console output -->
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+            <pattern>${MSG_PATTERN}</pattern> <!-- use of variable defined in the beginning of the file -->
         </encoder>
     </appender>
 
-    <root level="debug">
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> <!-- RollingFileAppender = appender used to write logs to files, which can be deleted / archived under certain conditions -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_PATTERN}</fileNamePattern>
+            <maxHistory>30</maxHistory> <!-- set max number of archived files, before oldest ones are deleted -->
+            <totalSizeCap>3GB</totalSizeCap> <!-- set max total size of all archived and current log files, which they can take, before they are being deleted -->
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize> <!-- set max file size, before new one is created -->
+        </triggeringPolicy>
+        <encoder>
+            <pattern>${MSG_PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"> <!-- filter messages -->
+            <level>ERROR</level> <!-- set filter for ERROR level logs -->
+            <onMatch>DENY</onMatch> <!-- DENY = do not log messages of this level -->
+            <onMismatch>ACCEPT</onMismatch> <!-- ACCEPT = log all other messages than ERROR -->
+        </filter>
+    </appender>
+
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${ERROR_LOG_FILE_PATTERN}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>${MSG_PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level> <!-- log only ERROR level messages -->
+        </filter>
+    </appender>
+
+    <root level="debug"> <!-- specify which of the defined appenders you want to use -->
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ERROR_FILE" />
     </root>
 </configuration>

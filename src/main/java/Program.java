@@ -15,12 +15,15 @@ public class Program {
     public static void main(String args[]){
         System.out.println("Hello!");
 
-        Bear bear = new BlackBear((LocalDateTime.now().plusDays(-1)));
+        Bear bear = new BlackBear.BlackBearBuilder()
+                .setLastEatTime((LocalDateTime.now().plusDays(-1)))
+                .build();
         bear.isAlive();
 
         System.out.println(bear.getWeight());
 
-        Bear blb = new BlackBear();
+        Bear blb = new BlackBear.BlackBearBuilder()
+                .build();
         Bear brb = new BrownBear();
         Bear plb = new PolarBear(LocalDateTime.now());
         //Models.Animals.Bear tb = new Models.Toys.TeddyBear();

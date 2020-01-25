@@ -9,6 +9,8 @@ public abstract class Animal extends RealObject implements IAnimal{ // We do not
     protected LocalDateTime lastEatTime;
     protected AttackType attackType;
     protected String info;
+    protected String name;
+
 
     public LocalDateTime getLastEatTime(){
         return lastEatTime;
@@ -26,5 +28,13 @@ public abstract class Animal extends RealObject implements IAnimal{ // We do not
 
     public AttackType getAttackType(){
         return attackType;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String newName){
+        this.name = newName;
     }
 }

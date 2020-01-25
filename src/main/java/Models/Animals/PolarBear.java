@@ -5,6 +5,7 @@ import Constants.AttackType;
 import java.time.LocalDateTime;
 
 public class PolarBear extends Bear {
+
     public PolarBear(){
         assignConsts();
 

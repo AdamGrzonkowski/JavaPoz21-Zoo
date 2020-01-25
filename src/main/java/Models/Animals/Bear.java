@@ -1,5 +1,4 @@
 package Models.Animals;
-
 import java.time.LocalDateTime;
 
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -9,9 +8,6 @@ public abstract class Bear extends Animal {
     public Bear(){}
 
     protected Bear(LocalDateTime eatTime){
-        if (eatTime == null){
-            throw new IllegalArgumentException("Eattime has illegal value: null");
-        }
         lastEatTime = eatTime;
     }
 

@@ -14,7 +14,7 @@ public class AnimalsServiceTest {
     @Test
     public void Display_Always_ReturnsStringContainingInfoAboutAnimal(){
         IAnimalService animalService = new AnimalService();
-        Animal bear = new BlackBear();
+        Animal bear = new BlackBear.BlackBearBuilder().build();
         String expected = bear.getInfo();
 
         String actual = animalService.display(bear);
@@ -25,7 +25,7 @@ public class AnimalsServiceTest {
     @Test
     public void Attack_Always_ReturnsAttackTypeOfAnimal(){
         IAnimalService animalService = new AnimalService();
-        Animal bear = new BlackBear();
+        Animal bear = new BlackBear.BlackBearBuilder().build();
         AttackType expected = bear.getAttackType();
 
         AttackType actual = animalService.attack(bear);
@@ -36,7 +36,7 @@ public class AnimalsServiceTest {
     @Test
     public void GetNumberOfAllAnimals_Always_ReturnsCorrectNumberOfAnimals(){
         IAnimalService animalService = new AnimalService();
-        ((AnimalService) animalService).blackBears.add(new BlackBear());
+        ((AnimalService) animalService).blackBears.add(new BlackBear.BlackBearBuilder().build());
         ((AnimalService) animalService).brownBears.add(new BrownBear());
         ((AnimalService) animalService).brownBears.add(new BrownBear());
         ((AnimalService) animalService).polarBears.add(new PolarBear());
@@ -71,7 +71,7 @@ public class AnimalsServiceTest {
     @Test
     public void GetAnimalsCount_Always_ReturnsCorrectNumberPerAnimalType(){
         IAnimalService animalService = new AnimalService();
-        ((AnimalService) animalService).blackBears.add(new BlackBear());
+        ((AnimalService) animalService).blackBears.add(new BlackBear.BlackBearBuilder().build());
         ((AnimalService) animalService).brownBears.add(new BrownBear());
         ((AnimalService) animalService).brownBears.add(new BrownBear());
         ((AnimalService) animalService).brownBears.add(new BrownBear());

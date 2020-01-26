@@ -13,6 +13,9 @@ public class AnimalService implements IAnimalService {
     public List<BrownBear> brownBears = new ArrayList<>();
     public List<PolarBear> polarBears = new ArrayList<>();
 
+
+    List<Animal> animals = new ArrayList<>();
+
     @Override
     public int getNumberOfAllAnimals() {
         return blackBears.size() + brownBears.size() + polarBears.size();
@@ -21,9 +24,9 @@ public class AnimalService implements IAnimalService {
     @Override
     public Map<String, Integer> getAnimalsCount() {
         Map<String, Integer> map = new HashMap<>();
-        map.put("Black Bears", blackBears.size());
-        map.put("Brown Bears", brownBears.size());
-        map.put("Polar Bears", polarBears.size());
+        map.put("Black Bear", blackBears.size());
+        map.put("Brown Bear", brownBears.size());
+        map.put("Polar Bear", polarBears.size());
 
         return map;
     }
@@ -36,5 +39,25 @@ public class AnimalService implements IAnimalService {
     @Override
     public AttackType attack(Animal animal) {
         return animal.getAttackType();
+    }
+
+    @Override
+    public void add(Animal animal) {
+        animals.add(animal);
+
+        // ----------------------------------
+        // below is not the best solution (HACK) as it requires modifying this method after each new bear type being added, but
+        // it's here as we don't have dedicated BlackBearService, BrownBearService or PolarBearService which would handle these things themselves
+        // or we could just use one Bear class with some "Type" field and references to Animal, but this requires some basic
+        // knowledge about databases, relations, normalization etc. and that's still to be learned, so we use below for now
+        if (animal instanceof BlackBear){
+            blackBears.add((BlackBear) animal);
+        }
+        else if (animal instanceof BrownBear){
+            brownBears.add((BrownBear) animal);
+        }
+        else if (animal instanceof PolarBear){
+            polarBears.add((PolarBear) animal);
+        }
     }
 }

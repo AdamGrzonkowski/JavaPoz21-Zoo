@@ -1,71 +1,50 @@
-import Models.Animals.Bear;
-import Models.Animals.BlackBear;
-import Models.Animals.BrownBear;
-import Models.Animals.PolarBear;
+import Dtos.BearDto;
+import Models.Animals.*;
 import Services.Animals.AnimalService;
 import Services.Animals.IAnimalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Program {
 
+    public static final String DateTimeFormat = "yyyy-MM-dd HH:mm";
+
     private static final Logger logger =
             LoggerFactory.getLogger(Program.class);
 
     public static void main(String args[]){
         try{
-            int tryToDivideBy0 = 12/0;
             MainProgramMethod();
+        }
+        catch(DateTimeParseException ex){
+            logger.warn("Exception during parsing to DateTime. Expected format: " + DateTimeFormat, ex);
         }
         catch(Exception ex){
             logger.error(ex.getMessage(), ex);
-            MainProgramMethod();
             // handle exception here - log it into file
+        }
+        finally{
+            MainProgramMethod(); // a HACK to always continue program after exception - not recommended!!! Only for learning purposes
         }
     }
 
     public static void MainProgramMethod(){
-        System.out.println("Hello!");
-
-        Bear bear = new BlackBear.BlackBearBuilder()
-                .setLastEatTime((LocalDateTime.now().plusDays(-1)))
-                .build();
-        bear.isAlive();
-
-        System.out.println(bear.getWeight());
-
-        Bear blb = new BlackBear.BlackBearBuilder()
-                .build();
-        Bear brb = new BrownBear();
-        Bear plb = new PolarBear(LocalDateTime.now());
-        //Models.Animals.Bear tb = new Models.Toys.TeddyBear();
-
-        // Mockito <------------- one of the main reasons for using Interfaces and Composition
-
-        ArrayList<Bear> animalList = new ArrayList<>();
-        animalList.add(blb);
-        animalList.add(brb);
-        animalList.add(plb);
-        //animalList.add(tb);
-
-        for (int i=0; i < animalList.size(); i++){
-            Bear currentBear = animalList.get(i);
-            System.out.println(currentBear.getInfo() + " " + currentBear.getWeight()+ " " + currentBear.getAttackType() + " " + currentBear.isAlive());
-        }
-
-        IAnimalService animalService = new AnimalService();
-        Scanner in = new Scanner(System.in);
-
         System.out.println("Welcome to the zoo app!");
         System.out.println("What would you like to do?");
+        System.out.println("[add ANIMAL_NAME] - add new animal to the zoo");
         System.out.println("[getCountOfAll] - returns number of all animals in the zoo");
         System.out.println("[getCountOf ANIMAL_NAME] - returns number of a given animals in the zoo");
         System.out.println("[quit] / [exit] - terminates the program");
+
+        IAnimalService animalService = new AnimalService();
+        Scanner in = new Scanner(System.in);
 
         while (true){
             String command = in.nextLine();
@@ -76,6 +55,7 @@ public class Program {
     public static void ProcessCommand(String command, IAnimalService animalService){
         String[] splitted = command.split(" ", 2);
         String commandType = splitted[0];
+        String animalType = null;
 
         switch(commandType){
             case "getCountOfAll":
@@ -84,7 +64,7 @@ public class Program {
 
                 break;
             case "getCountOf":
-                String animalType = splitted[1];
+                animalType = splitted[1];
                 Map<String, Integer> animalsCount = animalService.getAnimalsCount();
                 if (animalsCount.containsKey(animalType)){
                     System.out.println(animalsCount.get(animalType));
@@ -99,6 +79,24 @@ public class Program {
             case "exit":
                 System.out.println("Thank you for using Zoo app!");
                 System.exit(0);
+
+                break;
+            case "add":
+                animalType = splitted[1];
+                System.out.println("Give date/time of last feeding:");
+                String lastEatTime = new Scanner(System.in).nextLine();
+
+                // parse string to date
+
+                BearDto dto = new BearDto();
+                dto.lastEatTime = null;
+                dto.type = animalType;
+
+                BearFactory factory  = new BearFactory();
+                Animal animalToAdd = factory.Create(dto);
+
+                animalService.add(animalToAdd);
+                System.out.println("Animal has been added!");
 
                 break;
             default:

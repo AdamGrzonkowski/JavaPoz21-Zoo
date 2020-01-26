@@ -11,4 +11,5 @@ public interface IAnimalService {
 
     String display(Animal animal);
     AttackType attack(Animal animal);
+    void add(Animal animal);
 }

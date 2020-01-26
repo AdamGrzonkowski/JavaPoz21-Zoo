@@ -86,11 +86,12 @@ public class Program {
                 System.out.println("Give date/time of last feeding:");
                 String lastEatTime = new Scanner(System.in).nextLine();
 
-                // parse string to date
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime lastEatTimeAsDate = LocalDateTime.parse(lastEatTime, formatter);
 
                 BearDto dto = new BearDto();
-                dto.lastEatTime = null;
                 dto.type = animalType;
+                dto.lastEatTime = lastEatTimeAsDate;
 
                 BearFactory factory  = new BearFactory();
                 Animal animalToAdd = factory.Create(dto);

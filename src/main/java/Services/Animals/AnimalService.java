@@ -1,6 +1,7 @@
 package Services.Animals;
 
 import Constants.AttackType;
+import Constants.BearSpecies;
 import Models.Animals.*;
 
 import java.util.ArrayList;
@@ -24,9 +25,9 @@ public class AnimalService implements IAnimalService {
     @Override
     public Map<String, Integer> getAnimalsCount() {
         Map<String, Integer> map = new HashMap<>();
-        map.put("Black Bear", blackBears.size());
-        map.put("Brown Bear", brownBears.size());
-        map.put("Polar Bear", polarBears.size());
+        map.put(BearSpecies.BlackBear, blackBears.size());
+        map.put(BearSpecies.BrownBear, brownBears.size());
+        map.put(BearSpecies.PolarBear, polarBears.size());
 
         return map;
     }

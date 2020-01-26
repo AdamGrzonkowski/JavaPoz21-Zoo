@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * This is an entry point for console version of this map.
+ * If you want to use UI version, implemented in Swing, go to the
+ * @see Views.Main
+ */
 public class Program {
 
     public static final String DateTimeFormat = "yyyy-MM-dd HH:mm";

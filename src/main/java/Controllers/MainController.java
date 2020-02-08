@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 public class MainController {
     private IAnimalService animalService;
@@ -20,11 +21,31 @@ public class MainController {
         this.animalService = animalService;
         this.mainView = mainView;
 
+        // define which methods handle which view actions
         mainView.addAnimalListener(new AddAnimalListener());
+        mainView.getAnimalNumberListener(new GetAnimalNumberListener());
+        mainView.getAnimalCountListener(new GetChosenAnimalListener());
     }
 
     public void show(){
         mainView.show();
+    }
+
+    class GetChosenAnimalListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Map<String, Integer> animalCountPerSpecies = animalService.getAnimalsCount();
+            int chosenAnimalCount = animalCountPerSpecies.get(mainView.bearTypesComboBox.getSelectedItem());
+            mainView.chosenAnimalCountField.setText(String.valueOf(chosenAnimalCount));
+        }
+    }
+
+    class GetAnimalNumberListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int animalCount = animalService.getNumberOfAllAnimals();
+            mainView.animalCountField.setText(String.valueOf(animalCount));
+        }
     }
 
     class AddAnimalListener implements ActionListener {

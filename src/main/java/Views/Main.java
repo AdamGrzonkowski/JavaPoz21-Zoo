@@ -1,20 +1,9 @@
 package Views;
 
 import Constants.BearSpecies;
-import Dtos.BearDto;
-import Models.Animals.Animal;
-import Services.Animals.AnimalService;
-import Services.Animals.BearFactory;
-import Services.Animals.IAnimalService;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Map;
-
 /**
  * This Main view should be used in Controller class, but we do not complicate things for now,
  * so we define our logic directly in it.
@@ -27,50 +16,38 @@ public class Main extends JFrame {
      */
     public JPanel jPanel;
     private JButton getAllAnimalsButton;
-    private JLabel animalCountLabel;
-    private JTextField animalCountField;
-    private JTextField chosenAnimalCountField;
+    public JLabel animalCountLabel;
+    public JTextField animalCountField;
+    public JTextField chosenAnimalCountField;
     public JComboBox bearTypesComboBox;
     private JButton getChosenAnimalCountButton;
     public JButton addChosenAnimalButton;
     public JTextField nameField;
     public JTextField lastEatTimeField;
 
-    public Main(IAnimalService animalService) {
+    public Main() {
         // set combo box possible values (we define them here instead of Designer, to avoid typos and further errors)
         bearTypesComboBox.setModel(new DefaultComboBoxModel<>(
                 BearSpecies.BearSpeciesList.toArray(new String[0])
         ));
-
-        /**
-         * Below is defined logic to be performed on button's click event (on the button with fieldName 'button1')
-         */
-        getAllAnimalsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int animalCount = animalService.getNumberOfAllAnimals();
-                animalCountField.setText(String.valueOf(animalCount));
-            }
-        });
-        getChosenAnimalCountButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Map<String, Integer> animalCountPerSpecies = animalService.getAnimalsCount();
-                int chosenAnimalCount = animalCountPerSpecies.get(bearTypesComboBox.getSelectedItem());
-                chosenAnimalCountField.setText(String.valueOf(chosenAnimalCount));
-            }
-        });
     }
 
     public void addAnimalListener(ActionListener actionListener){
         addChosenAnimalButton.addActionListener(actionListener);
     }
 
+    public void getAnimalCountListener(ActionListener actionListener){
+        getChosenAnimalCountButton.addActionListener(actionListener);
+    }
+
+    public void getAnimalNumberListener(ActionListener actionListener){
+        getAllAnimalsButton.addActionListener(actionListener);
+    }
+
     public void show(){
 
         JFrame frame = new JFrame("App"); // we create frame to contain view components of our app
 
-        IAnimalService animalService = new AnimalService();
         Main mainView = this;
 
         frame.setContentPane(mainView.jPanel); // we set jPanel (the one from designer) to be the one used as view source for JFrame 'frame'

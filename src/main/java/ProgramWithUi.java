@@ -14,7 +14,7 @@ public class ProgramWithUi {
      */
     public static void main(String args[]) {
         IAnimalService animalService = new AnimalService();
-        Main mainView = new Main(animalService);
+        Main mainView = new Main();
         MainController mainController = new MainController(animalService, mainView);
 
         mainController.show();

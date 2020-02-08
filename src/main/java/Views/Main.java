@@ -30,11 +30,11 @@ public class Main extends JFrame {
     private JLabel animalCountLabel;
     private JTextField animalCountField;
     private JTextField chosenAnimalCountField;
-    private JComboBox bearTypesComboBox;
+    public JComboBox bearTypesComboBox;
     private JButton getChosenAnimalCountButton;
-    private JButton addChosenAnimalButton;
-    private JTextField nameField;
-    private JTextField lastEatTimeField;
+    public JButton addChosenAnimalButton;
+    public JTextField nameField;
+    public JTextField lastEatTimeField;
 
     public Main(IAnimalService animalService) {
         // set combo box possible values (we define them here instead of Designer, to avoid typos and further errors)
@@ -60,44 +60,14 @@ public class Main extends JFrame {
                 chosenAnimalCountField.setText(String.valueOf(chosenAnimalCount));
             }
         });
-
-        addChosenAnimalButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                try{
-                    String animalType = bearTypesComboBox.getSelectedItem().toString();
-                    String lastEatTime = lastEatTimeField.getText();
-                    String name = nameField.getText();
-
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime lastEatTimeAsDate = LocalDateTime.parse(lastEatTime, formatter);
-
-                    BearDto dto = new BearDto();
-                    dto.type = animalType;
-                    dto.lastEatTime = lastEatTimeAsDate;
-                    dto.name = name;
-
-                    BearFactory factory  = new BearFactory();
-                    Animal animalToAdd = factory.Create(dto);
-
-                    animalService.add(animalToAdd);
-
-                    addChosenAnimalButton.setBackground(Color.GREEN); // a very basic way to show that everything went fine - it would be better to show some dialog with "Success!" text
-                }catch(Exception ex){
-                    addChosenAnimalButton.setBackground(Color.RED); // a very basic way to show that something went wrong - it would be better to show some dialog with "Something went wrong, please contact your system administrator" text
-                }
-            }
-        });
     }
 
-    /**
-     * This main method should be defined elsewhere, for example in Program.java class
-     * and logic regarding creating JFrame etc. should be defined in Controller classes
-     *
-     * @param args
-     */
-    public static void main(String args[]) {
+    public void addAnimalListener(ActionListener actionListener){
+        addChosenAnimalButton.addActionListener(actionListener);
+    }
+
+    public void show(){
+
         JFrame frame = new JFrame("App"); // we create frame to contain view components of our app
 
         IAnimalService animalService = new AnimalService();

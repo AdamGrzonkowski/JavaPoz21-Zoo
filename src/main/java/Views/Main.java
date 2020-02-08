@@ -71,7 +71,7 @@ public class Main extends JFrame {
         JFrame frame = new JFrame("App"); // we create frame to contain view components of our app
 
         IAnimalService animalService = new AnimalService();
-        Main mainView = new Main(animalService);
+        Main mainView = this;
 
         frame.setContentPane(mainView.jPanel); // we set jPanel (the one from designer) to be the one used as view source for JFrame 'frame'
         frame.pack(); // we set frame to adjust its size to the elements it contains
